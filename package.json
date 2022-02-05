@@ -1,0 +1,19 @@
+{
+    "name": "calendar",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "pm2 start index.js --watch"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.19.1",
+        "cors": "^2.8.5",
+        "express": "^4.17.2",
+        "moment": "^2.29.1",
+        "mongoose": "^6.2.0",
+        "morgan": "^1.10.0"
+    }
+}
