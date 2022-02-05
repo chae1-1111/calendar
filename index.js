@@ -15,6 +15,9 @@ app.use("/test", testRouter);
 const calendarRouter = require("./router/calendarRouter");
 app.use("/calendar", calendarRouter);
 
+const memberRouter = require("./router/memberRouter");
+app.use("/member", memberRouter);
+
 app.use(cors());
 
 app.disable("x-powered-by");

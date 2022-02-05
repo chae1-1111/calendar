@@ -1,12 +1,17 @@
 const calendarRouter = require("express").Router();
-const moment = require("moment");
+const auth = require("../auth/auth");
 
 const calendarCont = require("../controller/calendarCont");
 
 calendarCont.connectDB();
 
 calendarRouter.route("/").get((req, res) => {
+    if (!auth(req.query.apikey)) {
+        res.json({ code: 401, message: "Invalid API key" });
+        return;
+    }
     const q = {};
+    UserKey = req.query.userkey;
     q.year = req.query.year;
     q.month = req.query.month >= 10 ? req.query.month : "0" + req.query.month;
     req.query.date
@@ -14,7 +19,7 @@ calendarRouter.route("/").get((req, res) => {
               req.query.date >= 10 ? req.query.date : "0" + req.query.date)
         : null;
     const resultJson = {};
-    calendarCont.getList(q, (err, result) => {
+    calendarCont.getList(UserKey, q, (err, result) => {
         if (err) {
             resultJson.code = 500;
             resultJson.message = "Connection to Database failed.";
@@ -28,6 +33,10 @@ calendarRouter.route("/").get((req, res) => {
 });
 
 calendarRouter.route("/").post((req, res) => {
+    if (!auth(req.query.apikey)) {
+        res.json({ code: 401, message: "Invalid API key" });
+        return;
+    }
     const StartDateTime = req.body.StartDateTime;
     const EndDateTime = req.body.EndDateTime;
     const UserKey = req.body.UserKey;
@@ -57,6 +66,10 @@ calendarRouter.route("/").post((req, res) => {
 });
 
 calendarRouter.route("/").delete((req, res) => {
+    if (!auth(req.query.apikey)) {
+        res.json({ code: 401, message: "Invalid API key" });
+        return;
+    }
     const id = req.body.id;
     const UserKey = req.body.UserKey;
     const resultJson = {};
@@ -74,6 +87,10 @@ calendarRouter.route("/").delete((req, res) => {
 });
 
 calendarRouter.route("/").put((req, res) => {
+    if (!auth(req.query.apikey)) {
+        res.json({ code: 401, message: "Invalid API key" });
+        return;
+    }
     const id = req.body.id;
     const UserKey = req.body.UserKey;
     const schedule = {

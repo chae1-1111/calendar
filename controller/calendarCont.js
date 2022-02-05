@@ -68,9 +68,10 @@ calendarCont.insert = (
     });
 };
 
-calendarCont.getList = (q, callback) => {
+calendarCont.getList = (UserKey, q, callback) => {
     CalModel.find(
         {
+            UserKey: UserKey,
             StartDateTime: {
                 $gte:
                     new Date(
