@@ -8,7 +8,7 @@ memberCont.connectDB();
 memberRouter.route("/").get((req, res) => {
     //login
     if (!auth(req.query.apikey)) {
-        res.json({ code: 401, message: "Invalid API key" });
+        res.status(401).json({ code: 401, message: "Invalid API key" });
         return;
     }
     const userid = req.query.userid;
@@ -28,13 +28,13 @@ memberRouter.route("/").get((req, res) => {
                 resultJson.message = "no matching Users";
             }
         }
-        res.json(resultJson);
+        res.status(jsonData.code).json(resultJson);
     });
 });
 
 memberRouter.route("/").post((req, res) => {
     if (!auth(req.body.apikey)) {
-        res.json({ code: 401, message: "Invalid API key" });
+        res.status(401).json({ code: 401, message: "Invalid API key" });
         return;
     }
     const userid = req.body.userid;
@@ -50,7 +50,7 @@ memberRouter.route("/").post((req, res) => {
             resultJson.message = "Signed Up Successful";
             resultJson.UserKey = result.UserKey;
         }
-        res.json(resultJson);
+        res.status(jsonData.code).json(resultJson);
     });
 });
 

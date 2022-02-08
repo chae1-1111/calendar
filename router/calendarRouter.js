@@ -7,7 +7,7 @@ calendarCont.connectDB();
 
 calendarRouter.route("/").get((req, res) => {
     if (!auth(req.query.apikey)) {
-        res.json({ code: 401, message: "Invalid API key" });
+        res.status(401).json({ code: 401, message: "Invalid API key" });
         return;
     }
     const q = {};
@@ -23,18 +23,18 @@ calendarRouter.route("/").get((req, res) => {
         if (err) {
             resultJson.code = 500;
             resultJson.message = "Connection to Database failed.";
-            res.json(resultJson);
+            res.status(jsonData.code).json(resultJson);
         } else {
             resultJson.code = 200;
             resultJson.result = result;
-            res.json(resultJson);
+            res.status(jsonData.code).json(resultJson);
         }
     });
 });
 
 calendarRouter.route("/").post((req, res) => {
     if (!auth(req.body.apikey)) {
-        res.json({ code: 401, message: "Invalid API key" });
+        res.status(401).json({ code: 401, message: "Invalid API key" });
         return;
     }
     const StartDateTime = req.body.StartDateTime;
@@ -55,11 +55,11 @@ calendarRouter.route("/").post((req, res) => {
             if (err) {
                 resultJson.code = 400;
                 resultJson.message = "Insert schedule failed.";
-                res.json(resultJson);
+                res.status(jsonData.code).json(resultJson);
             } else {
                 resultJson.code = 200;
                 resultJson.message = "Insert schedule Successful";
-                res.json(resultJson);
+                res.status(jsonData.code).json(resultJson);
             }
         }
     );
@@ -67,7 +67,7 @@ calendarRouter.route("/").post((req, res) => {
 
 calendarRouter.route("/").delete((req, res) => {
     if (!auth(req.body.apikey)) {
-        res.json({ code: 401, message: "Invalid API key" });
+        res.status(401).json({ code: 401, message: "Invalid API key" });
         return;
     }
     const id = req.body.id;
@@ -82,13 +82,13 @@ calendarRouter.route("/").delete((req, res) => {
             resultJson.code = 200;
             resultJson.message = "Delete Schedule Successful";
         }
-        res.json(resultJson);
+        res.status(jsonData.code).json(resultJson);
     });
 });
 
 calendarRouter.route("/").put((req, res) => {
     if (!auth(req.body.apikey)) {
-        res.json({ code: 401, message: "Invalid API key" });
+        res.status(401).json({ code: 401, message: "Invalid API key" });
         return;
     }
     const id = req.body.id;
@@ -110,7 +110,7 @@ calendarRouter.route("/").put((req, res) => {
             resultJson.code = 200;
             resultJson.message = "Update Schedule Successful";
         }
-        res.json(resultJson);
+        res.status(jsonData.code).json(resultJson);
     });
 });
 
