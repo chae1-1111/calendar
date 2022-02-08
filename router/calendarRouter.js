@@ -23,11 +23,11 @@ calendarRouter.route("/").get((req, res) => {
         if (err) {
             resultJson.code = 500;
             resultJson.message = "Connection to Database failed.";
-            res.status(jsonData.code).json(resultJson);
+            res.status(resultJson.code).json(resultJson);
         } else {
             resultJson.code = 200;
             resultJson.result = result;
-            res.status(jsonData.code).json(resultJson);
+            res.status(resultJson.code).json(resultJson);
         }
     });
 });
@@ -55,11 +55,11 @@ calendarRouter.route("/").post((req, res) => {
             if (err) {
                 resultJson.code = 400;
                 resultJson.message = "Insert schedule failed.";
-                res.status(jsonData.code).json(resultJson);
+                res.status(resultJson.code).json(resultJson);
             } else {
                 resultJson.code = 200;
                 resultJson.message = "Insert schedule Successful";
-                res.status(jsonData.code).json(resultJson);
+                res.status(resultJson.code).json(resultJson);
             }
         }
     );
@@ -82,7 +82,7 @@ calendarRouter.route("/").delete((req, res) => {
             resultJson.code = 200;
             resultJson.message = "Delete Schedule Successful";
         }
-        res.status(jsonData.code).json(resultJson);
+        res.status(resultJson.code).json(resultJson);
     });
 });
 
@@ -110,7 +110,7 @@ calendarRouter.route("/").put((req, res) => {
             resultJson.code = 200;
             resultJson.message = "Update Schedule Successful";
         }
-        res.status(jsonData.code).json(resultJson);
+        res.status(resultJson.code).json(resultJson);
     });
 });
 

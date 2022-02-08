@@ -28,7 +28,7 @@ memberRouter.route("/").get((req, res) => {
                 resultJson.message = "no matching Users";
             }
         }
-        res.status(jsonData.code).json(resultJson);
+        res.status(resultJson.code).json(resultJson);
     });
 });
 
@@ -51,7 +51,7 @@ memberRouter.route("/").post((req, res) => {
             resultJson.message = "Signed Up Successful";
             resultJson.UserKey = result.UserKey;
         }
-        res.status(jsonData.code).json(resultJson);
+        res.status(resultJson.code).json(resultJson);
     });
 });
 
