@@ -1,4 +1,6 @@
-const memberRouter = require("express").Router();
+const express = require("express");
+const memberRouter = express.Router();
+memberRouter.use(express.json());
 const auth = require("../auth/auth");
 
 const memberCont = require("../controller/memberCont");
