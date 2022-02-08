@@ -23,6 +23,7 @@ memberRouter.route("/").get((req, res) => {
                 resultJson.code = 200;
                 resultJson.message = "login Success";
                 resultJson.userkey = result[0].UserKey;
+                resultJson.name = result[0].Name;
             } else {
                 resultJson.code = 201;
                 resultJson.message = "no matching Users";
