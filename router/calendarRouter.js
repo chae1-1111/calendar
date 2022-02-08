@@ -33,7 +33,7 @@ calendarRouter.route("/").get((req, res) => {
 });
 
 calendarRouter.route("/").post((req, res) => {
-    if (!auth(req.query.apikey)) {
+    if (!auth(req.body.apikey)) {
         res.json({ code: 401, message: "Invalid API key" });
         return;
     }
@@ -66,7 +66,7 @@ calendarRouter.route("/").post((req, res) => {
 });
 
 calendarRouter.route("/").delete((req, res) => {
-    if (!auth(req.query.apikey)) {
+    if (!auth(req.body.apikey)) {
         res.json({ code: 401, message: "Invalid API key" });
         return;
     }
@@ -87,7 +87,7 @@ calendarRouter.route("/").delete((req, res) => {
 });
 
 calendarRouter.route("/").put((req, res) => {
-    if (!auth(req.query.apikey)) {
+    if (!auth(req.body.apikey)) {
         res.json({ code: 401, message: "Invalid API key" });
         return;
     }

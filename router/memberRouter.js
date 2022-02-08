@@ -19,9 +19,10 @@ memberRouter.route("/").get((req, res) => {
             resultJson.code = 400;
             resultJson.message = "login Failed";
         } else {
-            if (result === 1) {
+            if (result.length != 0) {
                 resultJson.code = 200;
                 resultJson.message = "login Success";
+                resultJson.userkey = result[0].UserKey;
             } else {
                 resultJson.code = 201;
                 resultJson.message = "no matching Users";
@@ -32,13 +33,13 @@ memberRouter.route("/").get((req, res) => {
 });
 
 memberRouter.route("/").post((req, res) => {
-    if (!auth(req.query.apikey)) {
+    if (!auth(req.body.apikey)) {
         res.json({ code: 401, message: "Invalid API key" });
         return;
     }
-    const userid = req.body.StartDateTime;
-    const userpw = req.body.EndDateTime;
-    const name = req.body.UserKey;
+    const userid = req.body.userid;
+    const userpw = req.body.userpw;
+    const name = req.body.name;
     const resultJson = {};
     memberCont.join(userid, userpw, name, (err, result) => {
         if (err) {
