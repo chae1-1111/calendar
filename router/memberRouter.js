@@ -33,7 +33,6 @@ memberRouter.route("/").get((req, res) => {
 });
 
 memberRouter.route("/").post((req, res) => {
-    console.log(req.body.apikey);
     if (!auth(req.body.apikey)) {
         res.status(401).json({ code: 401, message: "Invalid API key" });
         return;

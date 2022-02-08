@@ -52,7 +52,6 @@ memberCont.login = (userid, userpw, callback) => {
             callback(err, null);
             return;
         } else {
-            console.log(result);
             callback(null, result);
         }
     });
